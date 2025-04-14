@@ -5,6 +5,33 @@
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
 --       as this provides autocomplete and documentation while editing
 
+local function is_wsl()
+  local file = io.popen "cat /proc/version 2>/dev/null"
+  if file then
+    local output = file:read "*all"
+    file:close()
+    if output:match "Microsoft" or output:match "WSL" then return true end
+  end
+  return false
+end
+
+local clipboard = {}
+
+if is_wsl() then
+  clipboard = {
+    name = "win32yank-wsl",
+    copy = {
+      ["+"] = "win32yank.exe -i --crlf",
+      ["*"] = "win32yank.exe -i --crlf",
+    },
+    paste = {
+      ["+"] = "win32yank.exe -o --lf",
+      ["*"] = "win32yank.exe -o --lf",
+    },
+    cache_enabled = 1
+  }
+end
+
 ---@type LazySpec
 return {
   "AstroNvim/astrocore",
@@ -40,17 +67,21 @@ return {
     -- vim options can be configured here
     options = {
       opt = { -- vim.opt.<key>
-        relativenumber = true, -- sets vim.opt.relativenumber
+        relativenumber = false, -- sets vim.opt.relativenumber
+        tabstop = 4,
+        shiftwidth = 4,
         number = true, -- sets vim.opt.number
         spell = false, -- sets vim.opt.spell
-        signcolumn = "yes", -- sets vim.opt.signcolumn to yes
-        wrap = false, -- sets vim.opt.wrap
+        signcolumn = "auto", -- sets vim.opt.signcolumn to auto
+        wrap = true, -- sets vim.opt.wrap
         showtabline = 0,
+        clipboard = "unnamedplus",
       },
       g = { -- vim.g.<key>
         -- configure global vim variables (vim.g)
         -- NOTE: `mapleader` and `maplocalleader` must be set in the AstroNvim opts or before `lazy.setup`
         -- This can be found in the `lua/lazy_setup.lua` file
+        clipboard = clipboard,
       },
     },
     -- Mappings can be configured through AstroCore as well.
