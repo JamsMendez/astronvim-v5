@@ -15,7 +15,7 @@ local function is_wsl()
   return false
 end
 
-local clipboard = {}
+local clipboard = nil
 
 if is_wsl() then
   clipboard = {
