@@ -1,7 +1,4 @@
--- if true then return {} end -- WARN: REMOVE THIS LINE TO ACTIVATE THIS FILE
-
 -- You can also add or configure plugins by creating files in this `plugins/` folder
--- PLEASE REMOVE THE EXAMPLES YOU HAVE NO INTEREST IN BEFORE ENABLING THIS FILE
 -- Here are some examples:
 
 ---@type LazySpec
@@ -31,11 +28,11 @@ return {
             "██   ██      ██    ██    ██   ██ ██    ██",
             "██   ██ ███████    ██    ██   ██  ██████ ",
             "",
-            "███    ██ ██    ██ ██ ███    ███",
-            "████   ██ ██    ██ ██ ████  ████",
-            "██ ██  ██ ██    ██ ██ ██ ████ ██",
-            "██  ██ ██  ██  ██  ██ ██  ██  ██",
-            "██   ████   ████   ██ ██      ██",
+            "███    ██ ██    ██ ██ ███    ███",
+            "████   ██ ██    ██ ██ ████  ████",
+            "██ ██  ██ ██    ██ ██ ██ ████ ██",
+            "██  ██ ██  ██  ██  ██ ██  ██  ██",
+            "██   ████   ████   ██ ██      ██",
           }, "\n"),
         },
       },
@@ -189,8 +186,8 @@ return {
         options = {
           icons_enabled = true,
           theme = "auto",
-          component_separators = { left = "", right = "" },
-          section_separators = { left = "", right = "" },
+          component_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
           disabled_filetypes = {
             statusline = {},
             winbar = {},
@@ -222,7 +219,7 @@ return {
           lualine_a = {
             {
               "mode",
-              icon = "",
+              icon = "",
             },
           },
           lualine_b = { "branch", "diff", "diagnostics" },
