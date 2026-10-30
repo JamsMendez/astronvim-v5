@@ -23,5 +23,9 @@ if not pcall(require, "lazy") then
   vim.cmd.quit()
 end
 
+-- Omarchy's remote clipboard provider (tmux/SSH yanks reach the local clipboard); its migration
+-- only wires it into LazyVim's lua/config/options.lua, so load it here before any plugin
+require("config.remote_clipboard").setup()
+
 require "lazy_setup"
 require "polish"
