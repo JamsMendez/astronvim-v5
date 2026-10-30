@@ -3,19 +3,9 @@
 -- NOTE: We highly recommend setting up the Lua Language Server (`:LspInstall lua_ls`)
 --       as this provides autocomplete and documentation while editing
 
-local function is_wsl()
-  local file = io.popen "cat /proc/version 2>/dev/null"
-  if file then
-    local output = file:read "*all"
-    file:close()
-    if output:match "Microsoft" or output:match "WSL" then return true end
-  end
-  return false
-end
-
 local clipboard = nil
 
-if is_wsl() then
+if vim.fn.has "wsl" == 1 then
   clipboard = {
     name = "win32yank-wsl",
     copy = {
@@ -95,12 +85,20 @@ return {
 
         -- mappings seen under group name "Buffer"
         ["<Leader>bd"] = {
+          -- heirline (and its tabline buffer picker) is disabled, so pick with snacks instead
           function()
-            require("astroui.status.heirline").buffer_picker(
-              function(bufnr) require("astrocore.buffer").close(bufnr) end
-            )
+            require("snacks").picker.buffers {
+              title = "Close buffer",
+              confirm = function(picker)
+                local items = picker:selected { fallback = true }
+                picker:close()
+                for _, item in ipairs(items) do
+                  require("astrocore.buffer").close(item.buf)
+                end
+              end,
+            }
           end,
-          desc = "Close buffer from tabline",
+          desc = "Close buffer from picker",
         },
 
         -- tables with just a `desc` key will be registered with which-key if it's installed
