@@ -10,6 +10,8 @@ return {
   { import = "astrocommunity.pack.go", enabled = true },
   { import = "astrocommunity.pack.typescript-all-in-one" },
   { import = "astrocommunity.pack.docker" },
+  { import = "astrocommunity.pack.java" },
+  { import = "astrocommunity.pack.spring-boot" },
   { import = "astrocommunity.utility.noice-nvim" },
   -- import/override with your plugins folder
 }
