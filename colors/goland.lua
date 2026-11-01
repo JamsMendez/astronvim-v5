@@ -59,14 +59,15 @@ local c = {
 }
 
 local bg = transparent and "NONE" or c.bg
+local float_bg = transparent and "NONE" or c.bg_float
 
 local groups = {
   -- Editor UI
   Normal = { fg = c.fg, bg = bg },
   NormalNC = { fg = c.fg, bg = bg },
-  NormalFloat = { fg = c.fg, bg = c.bg_float },
-  FloatBorder = { fg = c.border, bg = c.bg_float },
-  FloatTitle = { fg = c.fg, bg = c.bg_float, bold = true },
+  NormalFloat = { fg = c.fg, bg = float_bg },
+  FloatBorder = { fg = c.border, bg = float_bg },
+  FloatTitle = { fg = c.fg, bg = float_bg, bold = true },
   Cursor = { fg = c.bg, bg = c.fg },
   CursorLine = { bg = c.bg_line },
   CursorColumn = { bg = c.bg_line },
@@ -89,12 +90,12 @@ local groups = {
   CurSearch = { bg = c.search_cur, bold = true },
   Substitute = { bg = c.search_cur },
   MatchParen = { bg = c.match_paren, bold = true },
-  Pmenu = { fg = c.fg, bg = c.bg_float },
+  Pmenu = { fg = c.fg, bg = float_bg },
   PmenuSel = { bg = "#2E436E" },
-  PmenuSbar = { bg = c.bg_float },
+  PmenuSbar = { bg = float_bg },
   PmenuThumb = { bg = "#4E5157" },
-  PmenuKind = { fg = c.type, bg = c.bg_float },
-  PmenuExtra = { fg = c.fg_dim, bg = c.bg_float },
+  PmenuKind = { fg = c.type, bg = float_bg },
+  PmenuExtra = { fg = c.fg_dim, bg = float_bg },
   StatusLine = { fg = c.fg, bg = c.bg_alt },
   StatusLineNC = { fg = c.fg_dim, bg = c.bg_alt },
   TabLine = { fg = c.fg_dim, bg = c.bg_alt },
@@ -292,6 +293,8 @@ local groups = {
   SnacksPickerMatch = { fg = c.func_decl, bold = true },
   IblIndent = { fg = "#2B2D30" },
   IblScope = { fg = "#4E5157" },
+  WhichKeyNormal = { link = "NormalFloat" },
+  WhichKeyBorder = { link = "FloatBorder" },
   WhichKey = { fg = c.keyword },
   WhichKeyGroup = { fg = c.func_decl },
   WhichKeyDesc = { fg = c.fg },
@@ -302,7 +305,14 @@ local groups = {
   BlinkCmpKind = { fg = c.type },
   BlinkCmpDoc = { link = "NormalFloat" },
   BlinkCmpDocBorder = { link = "FloatBorder" },
+  NoiceCmdlinePopup = { link = "NormalFloat" },
   NoiceCmdlinePopupBorder = { link = "FloatBorder" },
+  NoiceCmdlinePopupTitle = { link = "FloatTitle" },
+  NoiceCmdlineIcon = { fg = c.func_decl },
+  NoicePopup = { link = "NormalFloat" },
+  NoicePopupBorder = { link = "FloatBorder" },
+  SnacksPickerInput = { link = "NormalFloat" },
+  SnacksPickerInputBorder = { link = "FloatBorder" },
   TodoFgTODO = { fg = "#8BB33D" },
 }
 
