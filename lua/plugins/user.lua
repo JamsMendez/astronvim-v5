@@ -144,11 +144,11 @@ return {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     dependencies = { "nvim-tree/nvim-web-devicons" },
-    opts = function()
-      return {
+    -- merge into incoming opts so lualine-transparent.lua keeps its theme
+    opts = function(_, opts)
+      return vim.tbl_deep_extend("force", opts or {}, {
         options = {
           icons_enabled = true,
-          theme = "auto",
           component_separators = { left = "", right = "" },
           section_separators = { left = "", right = "" },
           disabled_filetypes = {
@@ -203,7 +203,7 @@ return {
         winbar = {},
         inactive_winbar = {},
         extensions = {},
-      }
+      })
     end,
   },
   {
